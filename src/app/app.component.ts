@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import {EnseignantService} from './services/enseignant.service';
+import { Observable, Subject } from 'rxjs/Observable';
+
+import 'rxjs/add/observable/interval';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +10,23 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'mon-projet-angular';
+  title = 'Universite Front';
+
+  isAuth = false;
+
+  constructor(private enseignantService: EnseignantService) {
+    setTimeout(
+      () => {
+        this.isAuth = true;
+      }, 4000
+    );
+  }
+
+  onAllumer() {
+    console.log('On allume tout !');
+  }
+
+  onFetch() {
+    this.enseignantService.getAppareilsFromServer();
+  }
 }
