@@ -1,9 +1,13 @@
 import { Enseignant } from '../models/enseignant.model';
 import { Subject } from 'rxjs/Subject';
+import {HttpClient} from '@angular/common/http';
+import {OnInit} from '@angular/core';
 
-export class EnseignantService {
+export class EnseignantService  implements  OnInit {
   private enseignants: Enseignant[];
   enseignantSubject = new Subject<Enseignant[]>();
+
+  constructor(private http:HttpClient) {}
 
   emitEnseignants() {
     this.enseignantSubject.next(this.enseignants.slice());
@@ -16,7 +20,7 @@ export class EnseignantService {
 
   getEnseignantsFromServer() {
     this.httpClient
-      .get<any[]>('https://"http://localhost:8080/listEnseignant/enseignants.json')
+      .get<Enseignant[]>('https://"http://localhost:8080/listEnseignant')
       .subscribe(
         (response) => {
           this.enseignants = response;

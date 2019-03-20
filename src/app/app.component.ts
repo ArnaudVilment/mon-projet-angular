@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {EnseignantService} from './services/enseignant.service';
-import { Observable, Subject } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/observable/interval';
 
@@ -27,6 +27,7 @@ export class AppComponent {
   }
 
   onFetch() {
-    this.enseignantService.getAppareilsFromServer();
+    console.log('récupérer les enseignants !');
+    this.enseignantService.getEnseignantsFromServer();
   }
 }
